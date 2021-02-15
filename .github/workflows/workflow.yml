@@ -1,0 +1,50 @@
+name: Main workflow
+
+on:
+  - workflow_dispatch
+  - pull_request
+  - push
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-latest
+            name: 1
+          - os: macos-latest
+            name: 2
+          - os: macos-latest
+            name: 3
+          - os: macos-latest
+            name: 4
+          - os: macos-latest
+            name: 5
+          - os: macos-latest
+            name: 6
+          - os: macos-latest
+            name: 7
+          - os: macos-latest
+            name: 8
+          - os: macos-latest
+            name: 9
+          - os: macos-latest
+            name: 10
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - run: brew install sysbench
+
+      - run: ioreg
+      - run: system_profiler
+
+      - run: sysbench cpu run
+      - run: sysbench memory run
+      - run: sysbench fileio prepare
+      - run: sysbench fileio --file-test-mode=seqrd run
+      - run: sysbench fileio prepare
+      - run: sysbench fileio --file-test-mode=seqwr run
+      - run: sysbench fileio prepare
+      - run: sysbench fileio --file-test-mode=rndrw run
