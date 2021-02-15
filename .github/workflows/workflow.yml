@@ -38,6 +38,7 @@ jobs:
       - run: brew install sysbench
 
       - run: ioreg
+      - run: ioreg -l | grep -e Manufacturer -e 'Vendor Name'
       - run: system_profiler
 
       - run: sysbench cpu run
