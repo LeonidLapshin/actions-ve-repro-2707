@@ -21,25 +21,11 @@ jobs:
             name: 4
           - os: macos-latest
             name: 5
-          - os: macos-latest
-            name: 6
-          - os: macos-latest
-            name: 7
-          - os: macos-latest
-            name: 8
-          - os: macos-latest
-            name: 9
-          - os: macos-latest
-            name: 10
 
     runs-on: ${{ matrix.os }}
 
     steps:
       - run: brew install sysbench
-
-      - run: ioreg
-      - run: ioreg -l | grep -e Manufacturer -e 'Vendor Name'
-      - run: system_profiler
 
       - run: sysbench cpu run
       - run: sysbench memory run
