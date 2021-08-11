@@ -23,6 +23,9 @@ jobs:
             name: 5
 
     runs-on: ${{ matrix.os }}
+    
+    env:
+      HOMEBREW_NO_ANALYTICS: "1"
 
     steps:
       - run: brew update
