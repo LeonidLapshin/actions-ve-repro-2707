@@ -25,6 +25,8 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - run: brew update
+      - run: brew fetch sysbench libevent luajit-openresty mysql-client openssl@1.1 zstd
       - run: brew install sysbench
 
       - run: sysbench cpu run
