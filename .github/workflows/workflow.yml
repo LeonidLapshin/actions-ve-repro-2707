@@ -29,6 +29,9 @@ jobs:
       HOMEBREW_NO_AUTO_UPDATE: "1"
 
     steps:
+      - run: system_profiler SPSoftwareDataType SPDeveloperToolsDataType
+      - run: system_profiler SPHardwareDataType SPMemoryDataType SPStorageDataType
+      - run: brew --version
       - run: echo brew update
       - run: brew fetch sysbench libevent luajit-openresty mysql-client openssl@1.1 zstd
       - run: brew install sysbench
